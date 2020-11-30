@@ -5,29 +5,34 @@ export default class SizeUpDown extends Component {
   constructor() {
     super();
     this.state = {
-      textSize: 10
+      textSize: 12,
+      amountToChangeBy: 1
+
     }
     this.downSize = this.downSize.bind(this)
     this.upSize = this.upSize.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 }
 
   downSize() {
-    this.setState({ textSize: this.state.textSize - 2 })
+    this.setState({ textSize: this.state.textSize - this.state.amountToChangeBy })
   }
   upSize() {
-    this.setState({ textSize: this.state.textSize + 2 })
+    this.setState({ textSize: this.state.textSize + this.state.amountToChangeBy })
+  }
+  handleChange(event) {
+    this.setState({ amountToChangeBy: parseInt(event.target.value) })
   }
 
   render() {
     return (
-      <div className="screen">
-        <div className="plotch">
-            <button onClick={() => this.downSize()}>Smaller Font</button>
-            <h1 style = {{
-                fontSize: `${this.state.textSize}px`
-                }}> Hey there! </h1>
-            <button onClick={() => this.upSize()}>Bigger Font</button>
-        </div>
+      <div className="wrapper">
+          <button onClick={() => `${this.downSize()}px`}>Smaller Font</button>
+          <h1 style = {{
+              fontSize: this.state.textSize
+              }}> {`${this.state.textSize}px`} </h1>
+              <input type="text" onChange= {this.handleChange}/>
+          <button onClick={() => `${this.upSize()}px`}>Bigger Font</button>
       </div>
     )}
     }
