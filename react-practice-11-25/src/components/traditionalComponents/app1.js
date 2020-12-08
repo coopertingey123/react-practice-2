@@ -18,7 +18,8 @@ export default class ShowHide extends Component {
      })
   }
 
-    
+// you can also delete the above function and set those vairables in the onClick below
+
   render() {
       return (
         <div className="wrapper">
